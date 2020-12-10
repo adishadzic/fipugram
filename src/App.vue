@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav id="nav" class="navbar navbar-expand-lg navbar-light">
       <!-- Image and text -->
           <a class="navbar-brand" href="#">
             <img src="@/assets/fipugram.png" alt="" height="40" class="d-inline-block align-top">
           </a>
       <button class="navbar-toggler"
               type="button" 
-              data-bs-toggle="collapse" 
-              data-bs-target="#navbarSupportedContent" 
+              data-toggle="collapse" 
+              data-target="#navbarSupportedContent" 
               aria-controls="navbarSupportedContent" 
               aria-expanded="false" 
               aria-label="Toggle navigation">
@@ -18,7 +18,7 @@
       
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item">
             <router-link to="/" class="nav-link">Home</router-link>
           </li>
@@ -30,8 +30,8 @@
           </li>
         </ul>
 
-        <form class="d-flex">
-           <input class="form-control me-2" type="search" placeholder="Pretraga" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0">
+           <input class="form-control mr-sm2" type="search" placeholder="Pretraga" aria-label="Search">
         </form>
       </div>
  </nav>
@@ -52,6 +52,7 @@
 
 #nav {
   padding: 30px;
+  background-color: white !important;
 
   a {
     font-weight: bold;
