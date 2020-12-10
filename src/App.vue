@@ -1,27 +1,26 @@
 <template>
   <div id="app">
-    <nav id="nav" class="navbar navbar-expand-lg navbar-light">
+    <nav id="nav" class="navbar navbar-expand-md navbar-light">
       <!-- Image and text -->
-          <a class="navbar-brand" href="#">
-            <img src="@/assets/fipugram.png" alt="" height="40" class="d-inline-block align-top">
-          </a>
+          <router-link to="/" class="navbar-brand">
+            <img src="@/assets/fipugram.png" alt="" height="80" class="d-inline-block align-top" loading="lazy" />
+          </router-link>
       <button class="navbar-toggler"
               type="button" 
               data-toggle="collapse" 
-              data-target="#navbarSupportedContent" 
-              aria-controls="navbarSupportedContent" 
+              data-target="#navbarToggler" 
+              aria-controls="navbarToggler" 
               aria-expanded="false" 
               aria-label="Toggle navigation">
               
               <span class="navbar-toggler-icon"></span>
       </button>
       
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item">
-            <router-link to="/" class="nav-link">Home</router-link>
-          </li>
+      <div class="collapse navbar-collapse" id="navbarToggler">
+          <form id="search" class="navbar-form form-inline ml-auto">
+           <input class="form-control mr-sm2" type="search" placeholder="Pretraga" aria-label="Search">
+        </form>
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <router-link to="/login" class="nav-link">Login</router-link>
           </li>
@@ -29,10 +28,6 @@
             <router-link to="/signup" class="nav-link">Signup</router-link>
           </li>
         </ul>
-
-        <form class="form-inline my-2 my-lg-0">
-           <input class="form-control mr-sm2" type="search" placeholder="Pretraga" aria-label="Search">
-        </form>
       </div>
  </nav>
     <div class="container">
@@ -52,7 +47,6 @@
 
 #nav {
   padding: 30px;
-  background-color: white !important;
 
   a {
     font-weight: bold;
@@ -62,5 +56,11 @@
       color: #42b983;
     }
   }
+}
+
+#search{
+  display: block;
+  text-align: center;
+
 }
 </style>
