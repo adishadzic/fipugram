@@ -18,23 +18,86 @@
       
       <div class="collapse navbar-collapse" id="navbarToggler">
           <form id="search" class="navbar-form form-inline ml-auto">
-           <input class="form-control mr-sm2" type="search" placeholder="Pretraga" aria-label="Search">
-        </form>
+           <input v-model="store.searchTerm" 
+                  class="form-control mr-sm2" 
+                  type="search" 
+                  placeholder="Pretraga" 
+                  aria-label="Search">
+          </form>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
+          <li v-if="!store.currentUser" class="nav-item">
             <router-link to="/login" class="nav-link">Login</router-link>
           </li>
-          <li class="nav-item">
+          <li v-if="!store.currentUser" class="nav-item">
             <router-link to="/signup" class="nav-link">Signup</router-link>
+          </li>
+          <li v-if="store.currentUser" class="nav-item">
+            <a href="#" @click.prevent="logout()" class="nav-link">Logout</a>
           </li>
         </ul>
       </div>
- </nav>
+    </nav>
+    
     <div class="container">
       <router-view/>
     </div>
   </div>
 </template>
+
+
+<script>
+import store from "@/store";
+import { firebase } from "@/firebase";
+import router from '@/router';
+
+firebase.auth().onAuthStateChanged((user) => {
+  const currentRoute = router.currentRoute;
+
+  console.log('Provjera stanja logina!');
+  if (user) {
+    // User is signed in.
+    console.log(user.email);
+    store.currentUser = user.email;
+
+    if(!currentRoute.meta.needsUser) {
+      router.push({ name: "Home" })
+    }
+
+
+  } else {
+    // User is not signed in.
+    console.log('No user');
+    store.currentUser = null;
+
+
+    if(currentRoute.meta.needsUser) {
+      router.push({ name: "Login" })
+    }
+    /* if(router.name !== 'login'){
+    router.push({ name: "Login" })
+    } */
+  }
+}); 
+
+
+export default {
+    name: 'app',
+    data() {
+      return{
+        store,
+      };
+    },
+    methods: {
+      logout() {
+        firebase.auth().signOut()
+        .then(() =>{
+          this.$router.push({ name: 'Login' })
+        });
+      }
+    }
+};
+</script>
+
 
 <style lang="scss">
 #app {
